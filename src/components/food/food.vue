@@ -36,7 +36,7 @@
         <div class="rating">
           <h1 class="title">商品评价</h1>
           <ratingselect :select-type="selectType" :only-content="onlyContent" :desc="desc"
-          :ratings="food.rating"></ratingselect>
+          :ratings="food.ratings"></ratingselect>
         </div>
       </div>
     </div>
@@ -64,7 +64,7 @@ export default {
     return {
       showFlag: false,
       selectType: ALL,
-      onlyContent: true,
+      onlyContent: false,
       desc: {
         all: '全部',
         positive: '推荐',
@@ -76,7 +76,7 @@ export default {
     show() {
       this.showFlag = true
       this.selectType = ALL
-      this.onlyContent = true
+      this.onlyContent = false
       this.$nextTick(() => {
         if (!this.scroll) {
           this.scroll = new BScroll(this.$refs.food, {

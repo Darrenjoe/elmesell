@@ -1,11 +1,20 @@
 <template>
   <div class="ratingselect">
     <div class="rating-type">
-      <span>{{desc.all}}</span>
-      <span>{{desc.positive}}</span>
-      <span>{{desc.negative}}</span>
+      <span @click="select(2,$event)" class="block positive" :class="{'active':selectType===2}">
+        {{desc.all}}
+        <span class="count">47</span>
+      </span>
+      <span @click="select(0,$event)" class="block positive" :class="{'active':selectType===0}">
+        {{desc.positive}}
+        <span class="count">47</span>
+      </span>
+      <span @click="select(1,$event)" class="block negative" :class="{'active':selectType===1}">
+        {{desc.negative}}
+        <span class="count">47</span>
+      </span>
     </div>
-    <div class="switch">
+    <div class="switch" :class="{'on':onlyContent}">
       <span class="icon-check_circle"></span>
       <span class="text">只看有内容的评价</span>
     </div>
@@ -42,6 +51,14 @@ export default {
           negative: '不满意'
         }
       }
+    }
+  },
+  methods: {
+    select(type, event) {
+      if (!event._constructed) {
+        return
+      }
+      this.selectType = type
     }
   }
 }
