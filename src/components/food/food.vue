@@ -62,6 +62,7 @@
 <script>
 import Vue from 'vue'
 import BScroll from 'better-scroll'
+import {formatDate} from '../../common/js/date'
 import cartcontrol from '../cartcontrol/cartcontrol'
 import ratingselect from '../ratingselect/ratingselect'
 import split from '../split/split'
@@ -135,6 +136,12 @@ export default {
     },
     addFood(target) {
       this.$emit('add', target)
+    }
+  },
+  filters: {
+    formatDate(time) {
+      let date = new Date(time)
+      return formatDate(date, 'yyyy-MM-dd hh:mm')
     }
   },
   components: {
