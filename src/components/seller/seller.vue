@@ -1,11 +1,29 @@
 <template>
   <div class="seller">
-    seller!
+    <div class="seller-content">
+      <div class="overview">
+        <h1 class="title">{{seller.name}}</h1>
+        <div class="desc">
+          <star :size="36" :score="seller.score"></star>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-export default {}
+import star from '../star/star'
+
+export default {
+  props: {
+    seller: {
+      type: Object
+    }
+  },
+  components: {
+    star
+  }
+}
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
