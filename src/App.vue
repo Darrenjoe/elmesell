@@ -13,9 +13,6 @@
       </div>
     </div>
     <router-view :seller="seller"></router-view>
-    <div class="footer">
-      I am footer
-    </div>
   </div>
 </template>
 
