@@ -19,7 +19,7 @@
             <span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
           </div>
           <div class="cartcontrol-wrapper">
-            <cartcontrol :food="food"></cartcontrol>
+            <cartcontrol @add="addFood" :food="food"></cartcontrol>
           </div>
           <transition name="fade">
             <div @click.stop.prevent="addFirst" class="buy" v-show="!food.count || food.count===0">

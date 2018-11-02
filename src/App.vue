@@ -23,7 +23,6 @@ import header from './components/header/header'
 import {urlParse} from './common/js/util'
 
 const EER_OK = 0
-const debug = process.env.NODE_ENV !== 'production'
 
 export default {
   data() {
@@ -37,8 +36,7 @@ export default {
     }
   },
   created() {
-    const url = debug ? '/api/seller' : 'http://ustbhuangyi.com/sell/api/seller'
-    this.$http.get(url + '?id=' + this.seller.id).then((response) => {
+    this.$http.get('/api/seller' + '?id=' + this.seller.id).then((response) => {
       response = response.body
       if (response.errno === EER_OK) {
         this.seller = Object.assign({}, this.seller, response.data)

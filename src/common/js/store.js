@@ -1,6 +1,6 @@
 export function saveToLocal(id, key, value) {
   let seller = window.localStorage._seller_
-  if (seller) {
+  if (!seller) {
     seller = {}
     seller[id] = {}
   } else {
@@ -15,6 +15,10 @@ export function saveToLocal(id, key, value) {
 
 export function loadFromLocal(id, key, def) {
   let seller = window.localStorage._seller_
+  if (!seller) {
+    return def
+  }
+  seller = JSON.parse(seller)[id]
   if (!seller) {
     return def
   }

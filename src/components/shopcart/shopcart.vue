@@ -56,6 +56,7 @@
 <script>
 import BScroll from 'better-scroll'
 import cartcontrol from '../cartcontrol/cartcontrol'
+
 export default {
   props: {
     selectFoods: {
@@ -128,29 +129,24 @@ export default {
         return 'enough'
       }
     },
-    listShow: {
-      get() {
-        return this.fold
-      },
-      set() {
-        if (!this.totalCount) {
-          this.fold = true
-          return false
-        }
-        let shows = !this.fold
-        if (shows) {
-          this.$nextTick(() => {
-            if (!this.scroll) {
-              this.scroll = new BScroll(this.$refs.listContent, {
-                click: true
-              })
-            } else {
-              this.scroll.refresh()
-            }
-          })
-        }
-        return shows
+    listShow() {
+      if (!this.totalCount) {
+        this.fold = true
+        return false
       }
+      let shows = !this.fold
+      if (shows) {
+        this.$nextTick(() => {
+          if (!this.scroll) {
+            this.scroll = new BScroll(this.$refs.listContent, {
+              click: true
+            })
+          } else {
+            this.scroll.refresh()
+          }
+        })
+      }
+      return shows
     }
   },
   methods: {
