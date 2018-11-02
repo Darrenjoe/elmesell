@@ -72,11 +72,19 @@
 import BScroll from 'better-scroll'
 import star from '../star/star'
 import split from '../split/split'
+import {saveToLocal, loadFromLocal} from '../../common/js/store'
 
 export default {
   props: {
     seller: {
       type: Object
+    }
+  },
+  data() {
+    return {
+      favorite: (() => {
+        return loadFromLocal(this.seller.id, 'favorite', false)
+      })()
     }
   },
   computed: {
@@ -107,7 +115,7 @@ export default {
         return
       }
       this.favorite = !this.favorite
-      // saveToLocal(this.seller.id, 'favorite', this.favorite)
+      saveToLocal(this.seller.id, 'favorite', this.favorite)
     },
     _initScroll() {
       if (!this.scroll) {
